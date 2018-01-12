@@ -24,7 +24,14 @@ class NSRadioButton extends React.Component{
         <div
             name="group-1"
             className={`ns-radio-button ${this.state.selected ? 'selected': ''}`}
-            onClick={(e)=>this.onClick(this.props.name, this, e)}>{this.props.label}
+            onClick={(e)=>this.onClick(this.props.name, this, e)}>
+            <div className="ns-radio-selection" >
+              <span className="ns-radio-fill-circle"></span>
+              <span className="ns-radio-void-circle"></span>
+            </div>
+            <div className="ns-radio-label">
+              {this.props.label}
+            </div>
         </div>
     );
   }

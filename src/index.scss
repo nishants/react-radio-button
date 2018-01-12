@@ -1,3 +1,57 @@
-.ns-radio-button.selected {
-  color: blue;
+$circle_size: 17px;
+$padding    : 10px;
+$circle_top_offset_adjustment : -2px;
+$transition_type: ease;
+
+.resize-container:after {
+  content:"";
+  display:table;
+  clear:both;
+}
+@mixin transform($value) {
+  -webkit-transform: $value;
+  -moz-transform:    $value;
+  -ms-transform:     $value;
+  -o-transform:      $value;
+  transform:         $value;
+}
+@mixin transition($value){
+  -webkit-transition: $value;
+  -moz-transition:    $value;
+  -o-transition:      $value;
+  transition:         $value;
+}
+
+.ns-radio-button {
+  @extend .resize-container;
+  padding: $padding/2;
+  .ns-radio-selection,.ns-radio-label{
+    float: left;
+  }
+  .ns-radio-selection{
+    position: relative;
+    height  : $circle_size;
+    width   : $circle_size;
+
+    .ns-radio-void-circle, .ns-radio-fill-circle{
+      position: absolute;
+      top   : $circle_top_offset_adjustment;
+      left  : 0px;
+      height: $circle_size;
+      width : $circle_size;
+      border-radius : 50%;
+    }
+    .ns-radio-void-circle{
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+  .ns-radio-label{
+    padding-left: $padding;
+    line-height : $circle_size;
+  }
+  &.selected{
+    .ns-radio-label{
+      color: blue;
+    }
+  }
 }
