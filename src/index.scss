@@ -2,12 +2,17 @@ $circle_size: 17px;
 $padding    : 10px;
 $circle_top_offset_adjustment : -2px;
 $transition_type: ease;
+$transition_time: 200ms;
+$circle_shrinks_to_size: 7px;
+$fill_circle_color: #8bb44a;
+$void_circle_color: #fbfbfb;
 
 .resize-container:after {
   content:"";
   display:table;
   clear:both;
 }
+
 @mixin transform($value) {
   -webkit-transform: $value;
   -moz-transform:    $value;
@@ -21,10 +26,16 @@ $transition_type: ease;
   -o-transition:      $value;
   transition:         $value;
 }
+@mixin transformOrigin($value) {
+  -webkit-transform-origin: $value;
+  -moz-transform-origin: $value;
+  transform-origin: $value;
+}
 
 .ns-radio-button {
   @extend .resize-container;
   padding: $padding/2;
+
   .ns-radio-selection,.ns-radio-label{
     float: left;
   }
@@ -40,9 +51,17 @@ $transition_type: ease;
       height: $circle_size;
       width : $circle_size;
       border-radius : 50%;
+
+      border: 1px solid transparent;
+      @include transformOrigin(50% 50%);
+      @include transition(transform $transition_time $transition_type);
     }
     .ns-radio-void-circle{
       border: 1px solid rgba(0, 0, 0, 0.1);
+      background-color: $void_circle_color;
+    }
+    .ns-radio-fill-circle{
+      background-color: $fill_circle_color;
     }
   }
   .ns-radio-label{
@@ -50,6 +69,11 @@ $transition_type: ease;
     line-height : $circle_size;
   }
   &.selected{
+    .ns-radio-selection{
+      .ns-radio-void-circle{
+        @include transform(scale($circle_shrinks_to_size/$circle_size));
+      }
+    }
     .ns-radio-label{
       color: blue;
     }
