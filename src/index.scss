@@ -2,10 +2,13 @@ $circle_size: 17px;
 $padding    : 10px;
 $circle_top_offset_adjustment : -2px;
 $transition_type: ease;
-$transition_time: 200ms;
-$circle_shrinks_to_size: 7px;
+$transition_time: 300ms;
+$circle_shrinks_to_size: 10px;
 $fill_circle_color: #8bb44a;
 $void_circle_color: #fbfbfb;
+$fancy_bg_border_radius: $circle_size;
+$fancy_bg_border_fill_color: $fill_circle_color;
+$fancy_bg_selcted_text_color: $void_circle_color;
 
 .resize-container:after {
   content:"";
@@ -34,8 +37,11 @@ $void_circle_color: #fbfbfb;
 
 .ns-radio-button {
   @extend .resize-container;
+  position: relative;
   padding: $padding/2;
-
+  cursor : pointer;
+  display: inline-block;
+  clear: both;
   .ns-radio-selection,.ns-radio-label{
     float: left;
   }
@@ -51,22 +57,38 @@ $void_circle_color: #fbfbfb;
       height: $circle_size;
       width : $circle_size;
       border-radius : 50%;
-
+      //box-sizing: border-box;
       border: 1px solid transparent;
       @include transformOrigin(50% 50%);
-      @include transition(transform $transition_time $transition_type);
+      @include transition(#{transform $transition_time $transition_type, background $transition_time $transition_type, border $transition_time $transition_type});
     }
     .ns-radio-void-circle{
       border: 1px solid rgba(0, 0, 0, 0.1);
       background-color: $void_circle_color;
     }
     .ns-radio-fill-circle{
+      border: 1px solid $fill_circle_color;
       background-color: $fill_circle_color;
     }
   }
   .ns-radio-label{
-    padding-left: $padding;
+    position    : relative;
+    padding     : 0px $padding;
     line-height : $circle_size;
+    @include transition(color $transition_time $transition_type);
+  }
+  .ns-radio-fancy-bg{
+    position: absolute;
+    top   : 0px;
+    left  : 0px;
+    height: 100%;
+    width : 100%;
+    background-color: $fancy_bg_border_fill_color;
+    border-radius: $fancy_bg_border_radius;
+    opacity: 0;
+    @include transformOrigin(calc(0% + #{$circle_size/2}) 50%);
+    @include transition(#{transform $transition_time $transition_type, opacity $transition_time $transition_type});
+    @include transform(scale(0));
   }
   &.selected{
     .ns-radio-selection{
@@ -74,8 +96,40 @@ $void_circle_color: #fbfbfb;
         @include transform(scale($circle_shrinks_to_size/$circle_size));
       }
     }
+    .ns-radio-fancy-bg{
+      @include transform(scaleX(1));
+    }
+  }
+}
+
+.ns-radio-button:not(.show-fancy-bg){
+  .ns-radio-fancy-bg {
+    display: none;
+  }
+  &.selected{
+    .ns-radio-selection{
+      .ns-radio-void-circle{
+        background-color: $fill_circle_color;
+      }
+      .ns-radio-fill-circle{
+        background-color: $void_circle_color;
+      }
+    }
+  }
+}
+
+.ns-radio-button.show-fancy-bg{
+  .ns-radio-selection{
+    .ns-radio-fill-circle{
+      border: 1px solid transparent;
+    }
+  }
+  &.selected{
+    .ns-radio-fancy-bg {
+      opacity: 1;
+    }
     .ns-radio-label{
-      color: blue;
+      color: $fancy_bg_selcted_text_color;
     }
   }
 }

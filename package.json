@@ -8,8 +8,9 @@
     "react-scripts": "1.0.17"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "scss": "scss src/index.scss:src/index.css",
+    "start": "npm run scss && react-scripts start",
+    "build": "npm run scss && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
