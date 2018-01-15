@@ -69,6 +69,7 @@ $fancy_bg_selcted_text_color: $void_circle_color;
     .ns-radio-inner-circle{
       border: 1px solid $fill_circle_color;
       background-color: $fill_circle_color;
+      @include transform(scale(0));
     }
   }
   .ns-radio-label{

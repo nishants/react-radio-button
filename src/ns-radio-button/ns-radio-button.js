@@ -27,8 +27,8 @@ class NSRadioButton extends React.Component{
               onClick={(e)=>this.onClick(this.props.name, this, e)}>
             <div className="ns-radio-fancy-bg"></div>
             <div className="ns-radio-selection" >
-              <span className="ns-radio-inner-circle"></span>
               <span className="ns-radio-outer-circle"></span>
+              <span className="ns-radio-inner-circle"></span>
             </div>
             <div className="ns-radio-label">
               {this.props.label}

@@ -2,6 +2,9 @@
   &.selected{
     .ns-radio-selection{
       .ns-radio-outer-circle{
+        border: 1px solid $fill_circle_color;
+      }
+      .ns-radio-inner-circle{
         @include transform(scale($circle_shrinks_to_size/$circle_size));
       }
     }
