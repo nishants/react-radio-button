@@ -33,9 +33,6 @@
 
 .ns-radio-button.show-fancy-bg{
   .ns-radio-selection{
-    .ns-radio-inner-circle{
-      border: 1px solid transparent;
-    }
   }
   &.selected{
     .ns-radio-fancy-bg {
@@ -43,6 +40,13 @@
     }
     .ns-radio-label{
       color: $fancy_bg_selcted_text_color;
+    }
+    .ns-radio-outer-circle{
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .ns-radio-inner-circle{
+      @include transform(scale($circle_shrinks_to_size_fancy/$circle_size));
     }
   }
 }
