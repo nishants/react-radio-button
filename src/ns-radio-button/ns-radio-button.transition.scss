@@ -1,0 +1,45 @@
+.ns-radio-button{
+  &.selected{
+    .ns-radio-selection{
+      .ns-radio-void-circle{
+        @include transform(scale($circle_shrinks_to_size/$circle_size));
+      }
+    }
+    .ns-radio-fancy-bg{
+      @include transform(scaleX(1));
+    }
+  }
+}
+
+
+.ns-radio-button:not(.show-fancy-bg){
+  .ns-radio-fancy-bg {
+    display: none;
+  }
+  &.selected{
+    .ns-radio-selection{
+      .ns-radio-void-circle{
+        background-color: $fill_circle_color;
+      }
+      .ns-radio-fill-circle{
+        background-color: $void_circle_color;
+      }
+    }
+  }
+}
+
+.ns-radio-button.show-fancy-bg{
+  .ns-radio-selection{
+    .ns-radio-fill-circle{
+      border: 1px solid transparent;
+    }
+  }
+  &.selected{
+    .ns-radio-fancy-bg {
+      opacity: 1;
+    }
+    .ns-radio-label{
+      color: $fancy_bg_selcted_text_color;
+    }
+  }
+}

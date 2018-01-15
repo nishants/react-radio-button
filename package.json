@@ -8,7 +8,7 @@
     "react-scripts": "1.0.17"
   },
   "scripts": {
-    "scss": "scss src/index.scss:src/index.css",
+    "scss": "scss src/ns-radio-button/ns-radio-button.scss:src/ns-radio-button/ns-radio-button.css",
     "start": "npm run scss && react-scripts start",
     "build": "npm run scss && react-scripts build",
     "test": "react-scripts test --env=jsdom",
