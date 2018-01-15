@@ -1,7 +1,7 @@
 .ns-radio-button{
   &.selected{
     .ns-radio-selection{
-      .ns-radio-void-circle{
+      .ns-radio-outer-circle{
         @include transform(scale($circle_shrinks_to_size/$circle_size));
       }
     }
@@ -18,10 +18,10 @@
   }
   &.selected{
     .ns-radio-selection{
-      .ns-radio-void-circle{
+      .ns-radio-outer-circle{
         background-color: $fill_circle_color;
       }
-      .ns-radio-fill-circle{
+      .ns-radio-inner-circle{
         background-color: $void_circle_color;
       }
     }
@@ -30,7 +30,7 @@
 
 .ns-radio-button.show-fancy-bg{
   .ns-radio-selection{
-    .ns-radio-fill-circle{
+    .ns-radio-inner-circle{
       border: 1px solid transparent;
     }
   }

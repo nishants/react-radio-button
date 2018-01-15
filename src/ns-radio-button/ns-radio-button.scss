@@ -50,7 +50,7 @@ $fancy_bg_selcted_text_color: $void_circle_color;
     height  : $circle_size;
     width   : $circle_size;
 
-    .ns-radio-void-circle, .ns-radio-fill-circle{
+    .ns-radio-outer-circle, .ns-radio-inner-circle{
       position: absolute;
       top   : $circle_top_offset_adjustment;
       left  : 0px;
@@ -62,11 +62,11 @@ $fancy_bg_selcted_text_color: $void_circle_color;
       @include transformOrigin(50% 50%);
       @include transition(#{transform $transition_time $transition_type, background $transition_time $transition_type, border $transition_time $transition_type});
     }
-    .ns-radio-void-circle{
+    .ns-radio-outer-circle{
       border: 1px solid rgba(0, 0, 0, 0.1);
       background-color: $void_circle_color;
     }
-    .ns-radio-fill-circle{
+    .ns-radio-inner-circle{
       border: 1px solid $fill_circle_color;
       background-color: $fill_circle_color;
     }
